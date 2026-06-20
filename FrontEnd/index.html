@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SWEET HEART – Artisan Cake Shop</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="style.css" type="text/css" rel="stylesheet">
+<script src="main.js"></script>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <a class="logo" href="#"><span class="logo-main">❤ SWEET HEART</span><span class="logo-sub">Artisan Cake Studio</span></a>
+  <div class="nav-btns">
+    <button class="nbtn nbtn-book" onclick="openBook()">For Booking</button>
+    <button class="nbtn nbtn-ord"  onclick="openPW()">Orders</button>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="petal"></div><div class="petal"></div><div class="petal"></div>
+  <div class="petal"></div><div class="petal"></div>
+  <div class="hero-content">
+    <p class="eyebrow">Est. 2018 · Handcrafted with Love</p>
+    <h1 class="htitle">Every Slice<br><em>Tells a Story</em></h1>
+    <p class="htagline">Where butter, cream, and devotion become unforgettable moments</p>
+    <div class="hdiv"><span></span><div class="diam"></div><span></span></div>
+    <div class="hcta">
+      <button class="cp" onclick="openBook()">Book Your Cake</button>
+      <button class="cs" onclick="document.getElementById('gal').scrollIntoView({behavior:'smooth'})">Explore Flavours</button>
+    </div>
+  </div>
+</div>
+
+<!-- GALLERY -->
+<section class="gal" id="gal">
+  <p class="slbl">Our Signature Collection</p>
+  <h2 class="stitle">Crafted Cakes</h2>
+  <div class="gline"></div>
+  <div class="cgrid" id="cgrid"></div>
+</section>
+
+<!-- ABOUT -->
+<div class="about">
+  <p class="slbl" style="color:var(--gold-light)">Our Promise</p>
+  <h2 class="stitle">Baked Fresh, Every Order</h2>
+  <p>Every cake at Sweet Heart is made to order using only the finest ingredients — Belgian couverture chocolate, single-origin vanilla beans, and farm-fresh cream. No preservatives, no shortcuts, just pure love on every tier.</p>
+  <div class="stats">
+    <div><div class="snum">15+</div><div class="slb">Signature Flavours</div></div>
+    <div><div class="snum">5K+</div><div class="slb">Happy Customers</div></div>
+    <div><div class="snum">8</div><div class="slb">Years of Craft</div></div>
+    <div><div class="snum">100%</div><div class="slb">Fresh Daily</div></div>
+  </div>
+</div>
+<footer><p>© 2026 Sweet Heart Cake Studio · All rights reserved · Made with ❤ and a dash of gold</p></footer>
+
+<!-- ══ BOOKING MODAL ══ -->
+<div class="ov" id="ovBook">
+  <div class="modal" style="max-width:580px">
+    <div class="mhd"><h2>🎂 Cake Booking Form</h2><button class="mx" onclick="closeOv('ovBook')">✕</button></div>
+    <div class="mbody">
+      <div id="bkForm">
+        <div class="fr">
+          <div class="fg"><label>Full Name *</label><input type="text" id="b_name" placeholder="Your full name"></div>
+          <div class="fg"><label>Phone Number *</label><input type="tel" id="b_phone" placeholder="+91 XXXXX XXXXX"></div>
+        </div>
+        <div class="fg"><label>Select Cake *</label><select id="b_cake"><option value="">— Choose a flavour —</option></select></div>
+        <div class="fr">
+          <div class="fg">
+            <label>Required Date * <span style="font-size:.6rem;color:#a05070">(min 1 day ahead)</span></label>
+            <input type="date" id="b_date">
+            <div class="date-hint" id="dateHint"></div>
+          </div>
+          <div class="fg"><label>Required Time *</label><input type="time" id="b_time"></div>
+        </div>
+        <div class="fg"><label>Cake Queries / Special Instructions</label>
+          <textarea id="b_query" placeholder="Custom message, tier count, allergies, theme colours, serving size…"></textarea>
+        </div>
+        <button class="bsub" onclick="submitBook()">🎉 Confirm Booking</button>
+      </div>
+      <div class="conf" id="confBox">
+        <div class="cemoji">🎊</div>
+        <div class="ctitle">Booking Confirmed!</div>
+        <p class="plbl">Your Confirmation PIN</p>
+        <div class="pnum" id="pinDisp">------</div>
+        <div class="csum" id="csum"></div>
+        <p class="cnote">Save your PIN and show it when collecting your cake.<br>We'll call you shortly to confirm.</p>
+        <button class="bnew" onclick="resetBook()">+ New Booking</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ PASSWORD MODAL ══ -->
+<div class="ov" id="ovPW">
+  <div class="modal pwmod">
+    <div class="mhd"><h2>🔐 Shopkeeper Access</h2><button class="mx" onclick="closeOv('ovPW')">✕</button></div>
+    <div class="mbody">
+      <div class="pwicon">🎂</div>
+      <div class="pwtitle">Enter Access Password</div>
+      <p class="pwsub">This panel is restricted to Sweet Heart shop staff only.</p>
+      <div class="pwdots" id="pwdots"></div>
+      <div class="pwinp">
+        <input type="password" id="pwinput" maxlength="6" placeholder="••••••"
+          oninput="onPWIn()" onkeydown="if(event.key==='Enter')checkPW()" autocomplete="off">
+        <button class="pwtog" id="pwtog" onclick="togPW()">👁</button>
+      </div>
+      <div class="pwerr" id="pwerr"></div>
+      <button class="bpw" onclick="checkPW()">Enter Dashboard →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ ORDERS MODAL ══ -->
+<div class="ov" id="ovOrd">
+  <div class="modal ordmod">
+    <div class="mhd"><h2>📋 Bookings Dashboard</h2><button class="mx" onclick="closeOv('ovOrd')">✕</button></div>
+    <div class="mbody">
+      <div class="legend">
+        <strong style="font-size:.63rem;color:var(--rose-deep);margin-right:.3rem">Colour Key:</strong>
+        <span class="litem"><span class="ldot" style="background:#004085"></span><span>Today (0 days)</span></span>
+        <span class="litem"><span class="ldot" style="background:#dc3545"></span><span>1 day left</span></span>
+        <span class="litem"><span class="ldot" style="background:#856404"></span><span>2 days left</span></span>
+        <span class="litem"><span class="ldot" style="background:#28a745"></span><span>3+ days left</span></span>
+      </div>
+      <div class="ometa"><div class="ocnt" id="ocnt"></div></div>
+      <div id="ordwrap"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ EDIT MODAL ══ -->
+<div class="ov" id="ovEdit">
+  <div class="modal editmod">
+    <div class="mhd"><h2>✏ Update Booking</h2><button class="mx" onclick="closeOv('ovEdit')">✕</button></div>
+    <div class="mbody">
+      <input type="hidden" id="e_id">
+      <div class="fr">
+        <div class="fg"><label>Full Name *</label><input type="text" id="e_name"></div>
+        <div class="fg"><label>Phone Number *</label><input type="tel" id="e_phone"></div>
+      </div>
+      <div class="fg"><label>Select Cake *</label><select id="e_cake"></select></div>
+      <div class="fr">
+        <div class="fg">
+          <label>Required Date * <span style="font-size:.6rem;color:#a05070">(min 1 day ahead)</span></label>
+          <input type="date" id="e_date">
+        </div>
+        <div class="fg"><label>Required Time *</label><input type="time" id="e_time"></div>
+      </div>
+      <div class="fg"><label>Cake Queries</label><textarea id="e_query"></textarea></div>
+      <button class="bsub" onclick="saveEdit()">✔ Save Changes</button>
+    </div>
+  </div>
+</div>
+</body>
+</html>
